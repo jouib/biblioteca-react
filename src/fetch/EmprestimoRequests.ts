@@ -59,6 +59,31 @@ class EmprestimoRequests {
             return null;
         }
     }
+
+    async enviaFormularioEmprestimo(formData: object): Promise<boolean> {
+        const token = localStorage.getItem("token");
+        try {
+            const respostaAPI = await fetch(`${this.serverURL}${this.routeCadastraEmprestimo}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'x-access-token': `${token}`
+                    },
+                    body: JSON.stringify(formData)
+                }
+            );
+
+            if(!respostaAPI.ok) {
+                throw new Error("Erro ao fazer a requisição com o servidor.");
+            }
+
+            return true;
+        } catch (error) {
+            console.error(`Erro ao enviar o formulário. ${error}`);
+            return false;
+        }
+    }
 }
 
 // Exporta a classe já instanciada, pronta para ser utilizada em outras partes do sistema

@@ -1,5 +1,5 @@
 const API_SERVER_URL = import.meta.env.VITE_API_SERVER_URL;
-const API_SERVER_PORT = import.meta.env.VITE_API_SERVER_PORT;
+//const API_SERVER_PORT = import.meta.env.VITE_API_SERVER_PORT;
 
 /**
  * Configuração de todas as rotas da interface web
@@ -17,6 +17,7 @@ export const APP_ROUTES = {
 
     ROUTE_CADASTRO_ALUNO: '/cadastro/aluno',
     ROUTE_CADASTRO_LIVRO: '/cadastro/livro',
+    ROUTE_CADASTRO_EMPRESTIMO: '/cadastro/emprestimo',
 }
 
 /**
@@ -27,7 +28,7 @@ export const APP_ROUTES = {
  */
 export const SERVER_CFG = {
     // endereço do servidor da API
-    SERVER_URL: `${API_SERVER_URL}:${API_SERVER_PORT}`,
+    SERVER_URL: `${API_SERVER_URL}`,
     
     // endpoints de aluno
     ENDPOINT_LISTAR_ALUNOS: '/lista/alunos',
@@ -49,4 +50,12 @@ export const SERVER_CFG = {
 
     // endpoint de login
     ENDPOINT_AUTH_LOGIN: '/login'
+}
+
+/** ENUMERAÇÃO DOS STATUS DE EMPRESTIMO */
+
+export const STATUS_EMPRESTIMO = {
+    STATUs_EM_ANDAMENTO: 'Em andamento',
+    STATUS_CONCLUIDO: 'Concluído',
+    STATUS_ATRASADO: 'Atrasado'
 }

@@ -8,6 +8,7 @@ import PListaEmprestimos from './pages/PListagem/PListaEmprestimos/PListaEmprest
 import PListagemLivros from './pages/PListagem/PListaLivros/PListaLivros';
 import PCadastroAluno from './pages/PCadastro/PCadastroAluno/PCadastroAluno';
 import PCadastroLivro from './pages/PCadastro/PCadastroLivro/PCadastroLivro';
+import PCadastroEmprestimo from './pages/PCadastro/PCadastroEmprestimo/PCadastroEmprestimo';
 
 /**
  * Componente que irá lidar com todas as rotas da aplicação
@@ -31,6 +32,7 @@ function AppRoutes(): JSX.Element {
             
                 <Route path={APP_ROUTES.ROUTE_CADASTRO_ALUNO} element={<PCadastroAluno />} />
                 <Route path={APP_ROUTES.ROUTE_CADASTRO_LIVRO} element={<PCadastroLivro />} />
+                <Route path={APP_ROUTES.ROUTE_CADASTRO_EMPRESTIMO} element={<PCadastroEmprestimo />} />
             </Routes>
         </BrowserRouter>
     );

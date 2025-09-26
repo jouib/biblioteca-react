@@ -11,6 +11,7 @@ import EmprestimoRequests from '../../../fetch/EmprestimoRequests'; // Importa a
 // Importa o arquivo CSS com estilos específicos para este componente
 import estilo from './TabelaEmprestimo.module.css'; // Importa os estilos específicos para este componente
 import EmprestimoDTO from '../../../interfaces/EmprestimoInterface';
+import { APP_ROUTES } from '../../../appConfig';
 
 function TabelaEmprestimo(): JSX.Element {
     // Define o estado local para armazenar os dados dos empréstimos
@@ -36,6 +37,13 @@ function TabelaEmprestimo(): JSX.Element {
         <main>
             {/* Título da tabela com classe personalizada */}
             <h1 className={estilo['header-tabela-emprestimo']}>Lista de Empréstimos</h1>
+
+            <a
+                href={APP_ROUTES.ROUTE_CADASTRO_EMPRESTIMO}
+                className={estilo['anc-pag-cadastro']}
+            >
+                CADASTRAR EMPRÉSTIMO
+            </a>
 
             {/* Componente DataTable: renderiza a tabela com os dados dos empréstimos */}
             <DataTable

@@ -38,6 +38,21 @@ function TabelaAluno(): JSX.Element {
         fetchAlunos();  // Executa a função de busca
     }, []); // Array vazio garante que será executado apenas uma vez (montagem do componente)
 
+    const deletar = async (aluno: AlunoDTO) => {
+        const confirmar = window.confirm(`Tem certeza que deseja deletar o aluno ${aluno.nome} ${aluno.sobrenome}?`);
+
+        if(confirmar && typeof aluno.idAluno === 'number') {
+            const removido = await AlunoRequests.removerAluno(aluno.idAluno);
+            if(removido) {
+                window.location.reload(); //atualiza a página
+            } else {
+                alert('Erro ao deletar o aluno.');
+            }
+        } else if (confirmar){
+            alert('ID do aluno inválido.');
+        }
+    }
+
     return (
         <main>
             {/* Título da tabela com classe personalizada */}
@@ -92,6 +107,20 @@ function TabelaAluno(): JSX.Element {
                         if (!celular || celular.length < 10) return celular;
                         return celular.replace(/^(\d{2})(\d{1})(\d{4})(\d{4})$/, '($1) $2 $3-$4');
                     }}
+                />
+                <Column 
+                    field="idAluno"
+                    header="Ação"
+                    headerStyle={{ backgroundColor: 'var(--cor-primaria)', color: 'var(--font-color)' }}
+                    style={{ width: '15%', color: 'var(--font-color)' }}
+                    body= {(rowData) => (
+                        <>
+                            <button 
+                            style={{ width: '100%' }}
+                            onClick={() => deletar(rowData)}
+                            >Deletar</button>
+                        </>
+                    )} 
                 />
             </DataTable>
         </main>
