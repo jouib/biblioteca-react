@@ -105,6 +105,32 @@ class AlunoRequests {
             return false;
         }
     }
+
+
+    async enviarFormularioAtualizacaoAluno(formAluno: AlunoDTO): Promise<boolean> {
+        const token = localStorage.getItem('token');
+
+        try {
+            const respostaAPI = await fetch(`${this.serverURL}${this.routeAtualizaAluno}
+                ?idAluno=${formAluno.idAluno}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': `${token}`
+                    },
+                    body: JSON.stringify(formAluno)
+                });
+
+            if(!respostaAPI.ok) {
+                throw new Error('Erro ao fazer requisição com o servidor.');
+            }
+
+            return true;
+        } catch (error) {
+            console.error(`Erro ao enviar requisição. ${error}`);
+            return false;
+        }
+    }
 }
 
 // Exporta a classe já instanciando um objeto da mesma
