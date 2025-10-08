@@ -11,8 +11,8 @@ class EmprestimoRequests {
     private serverURL: string;                  // Variável para o endereço do servidor
     private routeListaEmprestimos: string;      // Variável para a rota de listagem de empréstimos
     private routeCadastraEmprestimo: string;    // Variável para a rota de cadastro de empréstimo
-    private routeAtualizaEmprestimo: string;    // Variável para a rota de atualiação de aluno
-    private routeRemoveEmprestimo: string;      // Variável para a rota de remoção do aluno
+    private routeAtualizaEmprestimo: string;    // Variável para a rota de atualiação de emprestimo
+    private routeRemoveEmprestimo: string;      // Variável para a rota de remoção do empréstimo
 
     /**
      * O construtor é executado automaticamente quando a classe é instanciada.
@@ -103,6 +103,31 @@ class EmprestimoRequests {
             return true;
         } catch (error) {
             console.error(`Erro ao fazer solicitação. ${error}`);
+            return false;
+        }
+    }
+
+    async enviarFormularioAtualizacaoEmprestimo(formEmprestimo: EmprestimoDTO): Promise<boolean> {
+        const token = localStorage.getItem('token');
+
+        try {
+            const respostaAPI = await fetch(`${this.serverURL}${this.routeAtualizaEmprestimo}
+                ?idEmprestimo=${formEmprestimo.idEmprestimo}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-access-token': `${token}`
+                    },
+                    body: JSON.stringify(formEmprestimo)
+                });
+
+            if(!respostaAPI.ok) {
+                throw new Error('Erro ao fazer requisição com o servidor.');
+            }
+
+            return true;
+        } catch (error) {
+            console.error(`Erro ao enviar requisição. ${error}`);
             return false;
         }
     }

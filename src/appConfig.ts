@@ -20,6 +20,8 @@ export const APP_ROUTES = {
     ROUTE_CADASTRO_EMPRESTIMO: '/cadastro/emprestimo',
 
     ROUTE_ATUALIZACAO_ALUNO: '/atualizar/aluno',
+    ROUTE_ATUALIZACAO_LIVRO: '/atualizar/livro',
+    ROUTE_ATUALIZACAO_EMPRESTIMO: '/atualizar/emprestimo',
 }
 
 /**
