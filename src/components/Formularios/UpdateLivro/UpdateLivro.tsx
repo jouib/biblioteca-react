@@ -20,8 +20,8 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
     // Busca as informações do aluno para preencher o formulário
     useEffect(() => {
         const fetchLivros = async () => {
-            try {
-                const livro = await LivroRequests.consultarLivro(formData.idLivro);
+        try {
+                const livro = await LivroRequests.consultarLivro(idLivro);
                 if (livro) {
                     setFormData({
                         idLivro: idLivro,

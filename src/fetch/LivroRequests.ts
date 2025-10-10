@@ -22,7 +22,6 @@ class LivroRequests {
         this.serverURL = SERVER_CFG.SERVER_URL;         // Endereço do servidor web
         this.routeListaLivros = SERVER_CFG.ENDPOINT_LISTAR_LIVROS;        // Define a rota para listar os livrosO;
         this.routeCadastraLivro = SERVER_CFG.ENDPOINT_CADASTRAR_LIVRO;    // Define a rota para cadastrar livros
-        this.routeAtualizaLivro = SERVER_CFG.ENDPOINT_LISTAR_LIVRO;    // Define a rota para atualizar livros
         this.routeAtualizaLivro = SERVER_CFG.ENDPOINT_ATUALIZAR_LIVRO;    // Define a rota para atualizar livros
         this.routeRemoveLivro = SERVER_CFG.ENDPOINT_REMOVER_LIVRO;        // Define a rota para remover livros
     }
