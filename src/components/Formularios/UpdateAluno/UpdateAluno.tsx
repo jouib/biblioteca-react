@@ -38,7 +38,7 @@ function UpdateAluno({ idAluno }: { idAluno: number }): JSX.Element {
     }
   }
 
-  fetchAlunos();
+  fetchAlunos();   
 }, []);
 
 
