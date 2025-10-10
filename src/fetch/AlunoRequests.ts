@@ -9,6 +9,7 @@ class AlunoRequests {
 
     private serverURL: string;          // Variável para o endereço do servidor
     private routeListaAlunos: string;   // Variável para a rota de listagem de alunos
+    private routeListaAluno: string;    // Variável para a rota de listagem de um aluno
     private routeCadastraAluno: string; // Variável para a rota de cadastro de aluno
     private routeAtualizaAluno: string; // Variável para a rota de atualiação de aluno
     private routeRemoveAluno: string;   // Variável para a rota de remoção do aluno
@@ -20,6 +21,7 @@ class AlunoRequests {
     constructor() {
         this.serverURL = SERVER_CFG.SERVER_URL;     // Endereço do servidor web
         this.routeListaAlunos = SERVER_CFG.ENDPOINT_LISTAR_ALUNOS;    // Rota configurada na API
+        this.routeListaAluno = SERVER_CFG.ENDPOINT_LISTAR_ALUNO;      // Rota configurada na API
         this.routeCadastraAluno = SERVER_CFG.ENDPOINT_CADASTRAR_ALUNO;    // Rota configurada na API
         this.routeAtualizaAluno = SERVER_CFG.ENDPOINT_ATUALIZAR_ALUNO; // Rota configurada na API
         this.routeRemoveAluno = SERVER_CFG.ENDPOINT_REMOVER_ALUNO;    // Rota configurada na API
@@ -60,7 +62,7 @@ class AlunoRequests {
         const token = localStorage.getItem('token'); 
         try {
             const respostaAPI = await fetch(`
-                ${this.serverURL}${this.routeListaAlunos}?idAluno=${idAluno}`, {
+                ${this.serverURL}${this.routeListaAluno}?idAluno=${idAluno}`, {
                     headers: {
                         'x-access-token': `${token}`
                     }

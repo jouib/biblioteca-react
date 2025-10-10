@@ -35,6 +35,7 @@ export const SERVER_CFG = {
     SERVER_URL: `${API_SERVER_URL}`,
     
     // endpoints de aluno
+    ENDPOINT_LISTAR_ALUNO: '/lista/aluno',
     ENDPOINT_LISTAR_ALUNOS: '/lista/alunos',
     ENDPOINT_CADASTRAR_ALUNO: '/novo/aluno',
     ENDPOINT_ATUALIZAR_ALUNO: '/atualiza/aluno',
