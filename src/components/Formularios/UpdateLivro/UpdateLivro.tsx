@@ -17,7 +17,7 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
         statusLivroEmprestado: ''
     });
 
-    // Busca as informações do aluno para preencher o formulário
+    // Busca as informações do livro para preencher o formulário
     useEffect(() => {
         const fetchLivros = async () => {
         try {
@@ -56,15 +56,14 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
                 ...formData,
                 quantTotal: Number(formData.quantTotal) || 0,
                 quantDisponivel: Number(formData.quantDisponivel) || 0,
-                valorAquisicao: formData.valorAquisicao // keep as string
             }
             
             const resposta = await LivroRequests.enviarFormularioAtualizacaoLivro(formDataToSend);
 
             if (resposta) {
-                alert('Aluno cadastrado com sucesso.');
+                alert('Livro cadastrado com sucesso.');
             } else {
-                alert('Erro ao cadastrar aluno.');
+                alert('Erro ao cadastrar livro.');
             }
         }
 
