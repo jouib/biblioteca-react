@@ -56,6 +56,28 @@ class AlunoRequests {
         }
     }
 
+    async consultarAluno(idAluno: number): Promise<AlunoDTO | null> {
+        const token = localStorage.getItem('token'); 
+        try {
+            const respostaAPI = await fetch(`
+                ${this.serverURL}${this.routeListaAlunos}?idAluno=${idAluno}`, {
+                    headers: {
+                        'x-access-token': `${token}`
+                    }
+                });
+                
+            if(respostaAPI.ok) {
+                const aluno: AlunoDTO = await respostaAPI.json();
+                return aluno;
+            } else {
+                throw new Error('Não foi possível consultar o aluno.');
+            }
+        } catch (error) {
+             console.error(`Erro ao fazer a consulta do aluno. ${error}`);
+             return null;
+        }
+    }
+
     /**
      * Envia os dados do formulário aluno para a API
      * @param formAluno Objeto com os valores do formulário
