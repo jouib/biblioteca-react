@@ -13,15 +13,14 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
         isbn: '',
         quantTotal: 0,
         quantDisponivel: 0,
-        valorAquisicao: '',
-        statusLivroEmprestado: ''
+        valorAquisicao: ''
     });
 
     // Busca as informações do livro para preencher o formulário
     useEffect(() => {
         const fetchLivro = async () => {
             try {
-                const livro = await LivroRequests.consultarLivro(formData.idLivro);
+                const livro = await LivroRequests.consultarLivro(idLivro);
                 if (livro) {
                     setFormData({
                         idLivro: formData.idLivro,
@@ -30,10 +29,9 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
                         editora: livro.editora || '',
                         anoPublicacao: livro.anoPublicacao || '',
                         isbn: livro.isbn || '',
-                        quantTotal: livro.quantTotal || 0,
-                        quantDisponivel: livro.quantDisponivel || 0,
-                        valorAquisicao: livro.valorAquisicao || '',
-                        statusLivroEmprestado: livro.statusLivroEmprestado || ''
+                        quantTotal: Number(livro.quantTotal) || 0,
+                        quantDisponivel: Number(livro.quantDisponivel) || 0,
+                        valorAquisicao: livro.valorAquisicao || ''
                     });
                 }
             } catch (error) {
@@ -42,15 +40,16 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
         };
 
         fetchLivro();
-    }, []);
+    }, [idLivro]);
 
     // Função para atualizar o state
     const handleChange = (nome: string, valor: string) => {
-        setFormData({ ...formData, [nome]: valor });
-    };
+    const numFields = ["quantTotal", "quantDisponivel", "valorAquisicao"];
+    setFormData({ ...formData, [nome]: numFields.includes(nome) ? Number(valor) : valor });
+};
 
     // Envia o formulário
-    const handleSubmit = async (formData: { idLivro: number; titulo: string; autor: string; editora: string; anoPublicacao: string; isbn: string; quantTotal: number; quantDisponivel: number; valorAquisicao: string; statusLivroEmprestado: string}) => {
+    const handleSubmit = async (formData: { idLivro: number; titulo: string; autor: string; editora: string; anoPublicacao: string; isbn: string; quantTotal: number; quantDisponivel: number; valorAquisicao: string}) => {
         const formDataToSend = {
             ...formData,
             quantTotal: Number(formData.quantTotal) || 0,
@@ -112,8 +111,8 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
                     <label>
                         Ano de Publicação
                         <input
-                            type="number"
-                            value={formData.anoPublicacao}
+                            type="text"
+                            value={formData.anoPublicacao || 0}
                             onChange={(e) => handleChange("anoPublicacao", e.target.value)}
                         />
                     </label>
@@ -158,7 +157,7 @@ function UpdateLivro({ idLivro }: { idLivro: number }): JSX.Element {
                             value={formData.valorAquisicao}
                             step={0.01}
                             onChange={(e) => handleChange("valorAquisicao", e.target.value)}
-                        />
+            />
                     </label>
                 </div>
 
