@@ -60,6 +60,28 @@ class EmprestimoRequests {
         }
     }
 
+    async consultarEmprestimo(idEmprestimo: number): Promise<EmprestimoDTO | null> {
+        const token = localStorage.getItem('token'); 
+        try {
+            const respostaAPI = await fetch(`
+                ${this.serverURL}${this.routeListaEmprestimos}?idEmprestimo=${idEmprestimo}`, {
+                    headers: {
+                        'x-access-token': `${token}`
+                    }
+                });
+                
+            if(respostaAPI.ok) {
+                const emprestimo: EmprestimoDTO = await respostaAPI.json();
+                return emprestimo;
+            } else {
+                throw new Error('Não foi possível consultar o emprestimo.');
+            }
+        } catch (error) {
+             console.error(`Erro ao fazer a consulta do emprestimo. ${error}`);
+             return null;
+        }
+    }
+
     async enviaFormularioEmprestimo(formData: object): Promise<boolean> {
         const token = localStorage.getItem("token");
         try {
