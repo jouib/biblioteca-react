@@ -117,6 +117,11 @@ function TabelaEmprestimo(): JSX.Element {
                             style={{ width: '100%' }}
                             onClick={() => deletar(rowData)}
                             >Deletar</button>
+
+                            <button 
+                            style={{ width: '100%' }}
+                            onClick={() => window.location.href = `/atualizar/emprestimo/${rowData.idEmprestimo}` }
+                            >Atualizar</button>
                         </>
                     )}
                 />

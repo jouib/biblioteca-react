@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 
 function PAtualizacaoLivro(): JSX.Element {
-    const { idLivro } = useParams();
+    const { idLivro } = useParams<{ idLivro: string }>();
 
     return (
         <div className="pagina-grid">

@@ -12,8 +12,8 @@ function UpdateEmprestimo({ idEmprestimo }: { idEmprestimo: number }): JSX.Eleme
     statusEmprestimo: "",
   });
 
-  const [alunos, setAlunos] = useState<any[]>([]);
-  const [livros, setLivros] = useState<any[]>([]);
+  const [alunos] = useState<any[]>([]);
+  const [livros] = useState<any[]>([]);
   const [statusEmprestimo] = useState<string[]>([
     "Ativo",
     "Concluído",
@@ -85,13 +85,14 @@ function UpdateEmprestimo({ idEmprestimo }: { idEmprestimo: number }): JSX.Eleme
   };
 
   return (
-    <section className={estilo["sec-form-emprestimo"]}>
-      <h1>Atualizar Empréstimo</h1>
+    <section className={estilo["sec-form-aluno"]}>
+    <h1>Atualizar Empréstimo</h1>
 
-      <form
-        className={estilo["form-emprestimo"]}
-        onSubmit={handleSubmit}
-      >
+    <form
+      className={estilo["form-aluno"]}
+      onSubmit={handleSubmit}
+    >
+      <div className={estilo["input-group"]}>
         <label>
           Aluno
           <select
@@ -125,7 +126,9 @@ function UpdateEmprestimo({ idEmprestimo }: { idEmprestimo: number }): JSX.Eleme
             ))}
           </select>
         </label>
+      </div>
 
+      <div className={estilo["input-group"]}>
         <label>
           Data do empréstimo
           <input
@@ -147,7 +150,9 @@ function UpdateEmprestimo({ idEmprestimo }: { idEmprestimo: number }): JSX.Eleme
             required
           />
         </label>
+      </div>
 
+      <div className={estilo["input-group"]}>
         <label>
           Status do empréstimo
           <select
@@ -164,10 +169,11 @@ function UpdateEmprestimo({ idEmprestimo }: { idEmprestimo: number }): JSX.Eleme
             ))}
           </select>
         </label>
+      </div>
 
-        <input type="submit" value="ENVIAR" />
-      </form>
-    </section>
+      <input type="submit" value="ENVIAR" />
+    </form>
+  </section>
   );
 }
 export default UpdateEmprestimo;
