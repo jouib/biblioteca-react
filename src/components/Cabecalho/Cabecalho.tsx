@@ -56,6 +56,11 @@ function Cabecalho(): JSX.Element {
                     <img
                         src={ `${SERVER_CFG.SERVER_URL}/uploads/${imagemPerfil}` }
                         alt='Imagem de perfil'
+                        style={{
+                            width: '5rem',
+                            height: '5rem',
+                            borderRadius: '50%',
+                        }}
                     />
 
                     {/* Link para navegar até a página de login */}
